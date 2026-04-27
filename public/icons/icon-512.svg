@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Restaurant menu placeholder icon">
+  <rect width="512" height="512" rx="112" fill="#7f1d1d"/>
+  <circle cx="256" cy="244" r="156" fill="#fffaf3"/>
+  <path d="M174 146v198M224 146v198M174 229h50M339 146v198M296 146c0 64 43 64 43 104" fill="none" stroke="#7f1d1d" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="256" y="438" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#fffaf3">MENU</text>
+</svg>
