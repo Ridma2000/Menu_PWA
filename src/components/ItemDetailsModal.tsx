@@ -39,7 +39,7 @@ export function ItemDetailsModal({
         className="max-h-[92vh] w-full max-w-3xl overflow-hidden rounded-t-lg bg-white shadow-2xl sm:rounded-lg"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <div className="relative aspect-[16/10] max-h-80 overflow-hidden bg-stone-100">
+        <div className="relative aspect-[4/3] max-h-80 overflow-hidden bg-stone-100 sm:aspect-[16/10]">
           <img
             src={item.image}
             alt={item.name}
@@ -55,15 +55,15 @@ export function ItemDetailsModal({
           </button>
         </div>
 
-        <div className="max-h-[calc(92vh-20rem)] overflow-y-auto p-5 sm:p-6">
+        <div className="max-h-[calc(92vh-14rem)] overflow-y-auto p-5 sm:max-h-[calc(92vh-20rem)] sm:p-6">
           <div className="flex flex-wrap gap-2">
             {item.tags.map((tag) => (
               <TagPill key={tag} tag={tag} />
             ))}
           </div>
 
-          <div className="mt-4 flex items-start justify-between gap-4">
-            <div>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+            <div className="min-w-0">
               <p className="text-sm font-bold tracking-[0.16em] text-red-700 uppercase">
                 {item.category}
               </p>
@@ -74,7 +74,7 @@ export function ItemDetailsModal({
                 {item.name}
               </h2>
             </div>
-            <p className="shrink-0 text-xl font-black text-stone-950">
+            <p className="shrink-0 text-xl font-black text-stone-950 sm:text-right">
               {formatCurrency(item.price)}
             </p>
           </div>

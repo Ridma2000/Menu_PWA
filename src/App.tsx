@@ -204,14 +204,17 @@ function App() {
       <main>
         <Hero />
 
-        <section id="menu" className="bg-[#fffaf3] px-4 py-10 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
+        <section
+          id="menu"
+          className="w-full max-w-full bg-[#fffaf3] px-4 py-10 sm:px-6 lg:px-8"
+        >
+          <div className="mx-auto max-w-7xl min-w-0">
             <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="text-sm font-bold tracking-[0.2em] text-red-700 uppercase">
+              <div className="min-w-0">
+                <p className="text-xs font-bold tracking-[0.18em] text-red-700 uppercase sm:text-sm sm:tracking-[0.2em]">
                   Our menu
                 </p>
-                <h2 className="mt-2 text-3xl font-black text-stone-950 sm:text-4xl">
+                <h2 className="mt-2 text-2xl font-black text-stone-950 sm:text-4xl">
                   Choose your favorites
                 </h2>
               </div>
@@ -221,8 +224,8 @@ function App() {
               </p>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
-              <div className="space-y-5">
+            <div className="grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+              <div className="min-w-0 space-y-5">
                 <SearchFilter
                   searchQuery={searchQuery}
                   selectedCategory={selectedCategory}
@@ -233,7 +236,7 @@ function App() {
                 />
 
                 {filteredItems.length > 0 ? (
-                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  <div className="grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {filteredItems.map((item) => (
                       <MenuCard
                         key={item.id}
@@ -255,7 +258,7 @@ function App() {
                 )}
               </div>
 
-              <aside className="lg:sticky lg:top-24">
+              <aside className="min-w-0 lg:sticky lg:top-24">
                 <CartPanel
                   cart={cart}
                   total={cartTotal}

@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate flex min-h-[62vh] items-end overflow-hidden bg-stone-950 px-4 py-10 text-white sm:px-6 lg:px-8"
+      className="relative isolate flex min-h-[62vh] w-full max-w-full items-end overflow-hidden bg-stone-950 px-4 py-10 text-white sm:px-6 lg:px-8"
     >
       <img
         src={heroImage}
@@ -17,12 +17,12 @@ export function Hero() {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-stone-950 via-stone-950/65 to-stone-950/20" />
 
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl min-w-0">
         <div className="max-w-3xl pb-4">
-          <p className="mb-3 text-sm font-semibold tracking-[0.24em] text-amber-200 uppercase">
+          <p className="mb-3 text-xs font-semibold tracking-[0.16em] text-amber-200 uppercase sm:text-sm sm:tracking-[0.24em]">
             Freshly prepared every day
           </p>
-          <h1 className="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-full text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
             {restaurantDetails.name} Menu
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-100 sm:text-lg">
@@ -46,24 +46,24 @@ export function Hero() {
           </div>
         </div>
 
-        <dl className="grid gap-3 border-t border-white/20 pt-5 text-sm text-stone-100 sm:grid-cols-3">
-          <div className="flex items-center gap-3">
+        <dl className="grid min-w-0 gap-3 border-t border-white/20 pt-5 text-sm text-stone-100 sm:grid-cols-3">
+          <div className="flex min-w-0 items-center gap-3">
             <Clock className="h-5 w-5 text-amber-200" aria-hidden="true" />
-            <div>
+            <div className="min-w-0">
               <dt className="font-semibold text-white">Hours</dt>
               <dd>{restaurantDetails.openingHours}</dd>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <Phone className="h-5 w-5 text-amber-200" aria-hidden="true" />
-            <div>
+            <div className="min-w-0">
               <dt className="font-semibold text-white">Phone</dt>
               <dd>{restaurantDetails.phone}</dd>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <MapPin className="h-5 w-5 text-amber-200" aria-hidden="true" />
-            <div>
+            <div className="min-w-0">
               <dt className="font-semibold text-white">Address</dt>
               <dd>{restaurantDetails.address}</dd>
             </div>

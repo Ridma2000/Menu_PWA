@@ -24,11 +24,11 @@ export function CartPanel({
   return (
     <section
       id="order"
-      className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm"
+      className="min-w-0 rounded-lg border border-stone-200 bg-white p-4 shadow-sm"
       aria-labelledby="cart-heading"
     >
-      <div className="flex items-center justify-between gap-3">
-        <div>
+      <div className="flex min-w-0 items-center justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-xs font-bold tracking-[0.16em] text-red-700 uppercase">
             Selected items
           </p>
@@ -55,12 +55,12 @@ export function CartPanel({
           {cart.map(({ item, quantity }) => (
             <div
               key={item.id}
-              className="grid grid-cols-[4rem_minmax(0,1fr)] gap-3 rounded-lg border border-stone-100 bg-stone-50 p-2"
+              className="grid min-w-0 grid-cols-[3.5rem_minmax(0,1fr)] gap-3 rounded-lg border border-stone-100 bg-stone-50 p-2 sm:grid-cols-[4rem_minmax(0,1fr)]"
             >
               <img
                 src={item.image}
                 alt={item.name}
-                className="h-16 w-16 rounded-lg object-cover"
+                className="h-14 w-14 rounded-lg object-cover sm:h-16 sm:w-16"
                 loading="lazy"
               />
               <div className="min-w-0">

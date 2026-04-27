@@ -21,7 +21,7 @@ export function SearchFilter({
   const filters: CategoryFilter[] = ['All', ...categories]
 
   return (
-    <div className="rounded-lg border border-stone-200 bg-white p-4 shadow-sm">
+    <div className="min-w-0 rounded-lg border border-stone-200 bg-white p-4 shadow-sm">
       <label className="relative block">
         <span className="sr-only">Search food by name</span>
         <Search
@@ -33,11 +33,11 @@ export function SearchFilter({
           value={searchQuery}
           onChange={(event) => onSearchChange(event.target.value)}
           placeholder="Search food by name"
-          className="h-12 w-full rounded-lg border border-stone-200 bg-stone-50 pl-10 pr-4 text-base text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-100"
+          className="h-12 w-full rounded-lg border border-stone-200 bg-stone-50 pl-10 pr-4 text-sm text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-red-600 focus:bg-white focus:ring-4 focus:ring-red-100 sm:text-base"
         />
       </label>
 
-      <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
+      <div className="mt-4 flex max-w-full gap-2 overflow-x-auto pb-1">
         {filters.map((category) => {
           const isActive = selectedCategory === category
 
@@ -46,7 +46,7 @@ export function SearchFilter({
               key={category}
               type="button"
               onClick={() => onCategoryChange(category)}
-              className={`shrink-0 rounded-lg px-4 py-2 text-sm font-bold transition ${
+              className={`shrink-0 rounded-lg px-3 py-2 text-xs font-bold transition sm:px-4 sm:text-sm ${
                 isActive
                   ? 'bg-stone-950 text-white shadow-sm'
                   : 'bg-stone-100 text-stone-700 hover:bg-stone-200'

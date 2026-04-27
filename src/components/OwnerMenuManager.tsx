@@ -216,14 +216,17 @@ export function OwnerMenuManager({
   }
 
   return (
-    <section id="owner" className="bg-white px-4 py-12 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section
+      id="owner"
+      className="w-full max-w-full bg-white px-4 py-12 sm:px-6 lg:px-8"
+    >
+      <div className="mx-auto max-w-7xl min-w-0">
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-bold tracking-[0.2em] text-red-700 uppercase">
+          <div className="min-w-0">
+            <p className="text-xs font-bold tracking-[0.18em] text-red-700 uppercase sm:text-sm sm:tracking-[0.2em]">
               Owner tools
             </p>
-            <h2 className="mt-2 text-3xl font-black text-stone-950 sm:text-4xl">
+            <h2 className="mt-2 text-2xl font-black text-stone-950 sm:text-4xl">
               Manage menu
             </h2>
           </div>
@@ -241,7 +244,7 @@ export function OwnerMenuManager({
               }
             }}
             disabled={!isOwnerVerified}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-stone-200 bg-white px-4 text-sm font-bold text-stone-800 transition hover:bg-stone-100 disabled:cursor-not-allowed disabled:bg-stone-100 disabled:text-stone-400"
+            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg border border-stone-200 bg-white px-4 text-sm font-bold text-stone-800 transition hover:bg-stone-100 disabled:cursor-not-allowed disabled:bg-stone-100 disabled:text-stone-400 sm:w-auto"
           >
             <RefreshCcw className="h-4 w-4" aria-hidden="true" />
             Reset samples
@@ -254,7 +257,7 @@ export function OwnerMenuManager({
           spreadsheet, or CMS later.
         </div>
 
-        <div className="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
+        <div className="mb-6 min-w-0 rounded-lg border border-stone-200 bg-stone-50 p-4">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h3 className="text-lg font-black text-stone-950">
@@ -309,9 +312,9 @@ export function OwnerMenuManager({
           </div>
         )}
 
-        <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
-          <div className="space-y-6">
-            <div className="rounded-lg border border-stone-200 bg-stone-50 p-4">
+        <div className="grid min-w-0 gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+          <div className="min-w-0 space-y-6">
+            <div className="min-w-0 rounded-lg border border-stone-200 bg-stone-50 p-4">
               <h3 className="text-lg font-black text-stone-950">Categories</h3>
               <div className="mt-4 flex gap-2">
                 <label className="min-w-0 flex-1">
@@ -344,7 +347,7 @@ export function OwnerMenuManager({
                   return (
                     <div
                       key={category}
-                      className="rounded-lg border border-stone-200 bg-white p-3"
+                      className="min-w-0 rounded-lg border border-stone-200 bg-white p-3"
                     >
                       {isEditing ? (
                         <div className="flex gap-2">
@@ -437,12 +440,12 @@ export function OwnerMenuManager({
             </div>
           </div>
 
-          <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
+          <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
             <form
               onSubmit={handleSubmitItem}
-              className="rounded-lg border border-stone-200 bg-stone-50 p-4"
+              className="min-w-0 rounded-lg border border-stone-200 bg-stone-50 p-4"
             >
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h3 className="text-lg font-black text-stone-950">
                   {itemDraft.id ? 'Edit item' : 'Add item'}
                 </h3>
@@ -611,7 +614,7 @@ export function OwnerMenuManager({
               </button>
             </form>
 
-            <div className="rounded-lg border border-stone-200 bg-white p-4">
+            <div className="min-w-0 rounded-lg border border-stone-200 bg-white p-4">
               <h3 className="text-lg font-black text-stone-950">
                 Current items
               </h3>
@@ -619,13 +622,13 @@ export function OwnerMenuManager({
                 {items.map((item) => (
                   <div
                     key={item.id}
-                    className="rounded-lg border border-stone-200 bg-stone-50 p-3"
+                    className="min-w-0 rounded-lg border border-stone-200 bg-stone-50 p-3"
                   >
-                    <div className="flex gap-3">
+                    <div className="flex min-w-0 gap-3">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="h-16 w-16 rounded-lg object-cover"
+                        className="h-16 w-16 shrink-0 rounded-lg object-cover"
                         loading="lazy"
                       />
                       <div className="min-w-0 flex-1">

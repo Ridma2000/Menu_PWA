@@ -11,7 +11,7 @@ interface MenuCardProps {
 
 export function MenuCard({ item, onAddToCart, onViewDetails }: MenuCardProps) {
   return (
-    <article className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+    <article className="min-w-0 overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-100">
         <img
           src={item.image}
@@ -32,8 +32,8 @@ export function MenuCard({ item, onAddToCart, onViewDetails }: MenuCardProps) {
       </div>
 
       <div className="flex min-h-56 flex-col p-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
+        <div className="flex min-w-0 items-start justify-between gap-3">
+          <div className="min-w-0">
             <p className="text-xs font-bold tracking-[0.16em] text-red-700 uppercase">
               {item.category}
             </p>
@@ -41,7 +41,7 @@ export function MenuCard({ item, onAddToCart, onViewDetails }: MenuCardProps) {
               {item.name}
             </h3>
           </div>
-          <p className="shrink-0 text-base font-black text-stone-950">
+          <p className="shrink-0 text-right text-base font-black text-stone-950">
             {formatCurrency(item.price)}
           </p>
         </div>
