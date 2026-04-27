@@ -5,30 +5,21 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { ItemDetailsModal } from './components/ItemDetailsModal'
 import { MenuCard } from './components/MenuCard'
-import { OwnerMenuManager } from './components/OwnerMenuManager'
 import { PWAInstallPrompt } from './components/PWAInstallPrompt'
 import { SearchFilter } from './components/SearchFilter'
 import { restaurantDetails } from './data/restaurant'
 import type { CartItem, CategoryFilter, MenuData, MenuItem } from './types/menu'
-import {
-  createDefaultMenuData,
-  loadMenuData,
-  saveMenuData,
-} from './utils/menuStorage'
+import { loadMenuData } from './utils/menuStorage'
 import { createWhatsAppOrderUrl } from './utils/order'
 
 function App() {
-  const [menuData, setMenuData] = useState<MenuData>(() => loadMenuData())
+  const [menuData] = useState<MenuData>(() => loadMenuData())
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] =
     useState<CategoryFilter>('All')
   const [cart, setCart] = useState<CartItem[]>([])
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
   const { categories, items } = menuData
-
-  useEffect(() => {
-    saveMenuData(menuData)
-  }, [menuData])
 
   useEffect(() => {
     setSelectedCategory((currentCategory) =>
@@ -140,62 +131,6 @@ function App() {
     )
   }
 
-  const addCategory = (category: string) => {
-    setMenuData((currentData) => ({
-      ...currentData,
-      categories: [...currentData.categories, category],
-    }))
-  }
-
-  const renameCategory = (currentCategory: string, nextCategory: string) => {
-    setMenuData((currentData) => ({
-      categories: currentData.categories.map((category) =>
-        category === currentCategory ? nextCategory : category,
-      ),
-      items: currentData.items.map((item) =>
-        item.category === currentCategory
-          ? { ...item, category: nextCategory }
-          : item,
-      ),
-    }))
-  }
-
-  const deleteCategory = (categoryToDelete: string) => {
-    setMenuData((currentData) => ({
-      ...currentData,
-      categories: currentData.categories.filter(
-        (category) => category !== categoryToDelete,
-      ),
-    }))
-  }
-
-  const saveMenuItem = (item: MenuItem) => {
-    setMenuData((currentData) => {
-      const itemExists = currentData.items.some(
-        (currentItem) => currentItem.id === item.id,
-      )
-      const categories = currentData.categories.includes(item.category)
-        ? currentData.categories
-        : [...currentData.categories, item.category]
-
-      return {
-        categories,
-        items: itemExists
-          ? currentData.items.map((currentItem) =>
-              currentItem.id === item.id ? item : currentItem,
-            )
-          : [...currentData.items, item],
-      }
-    })
-  }
-
-  const deleteMenuItem = (itemId: string) => {
-    setMenuData((currentData) => ({
-      ...currentData,
-      items: currentData.items.filter((item) => item.id !== itemId),
-    }))
-  }
-
   return (
     <>
       <Header cartCount={cartCount} />
@@ -281,17 +216,6 @@ function App() {
             </div>
           </div>
         </section>
-
-        <OwnerMenuManager
-          categories={categories}
-          items={items}
-          onAddCategory={addCategory}
-          onRenameCategory={renameCategory}
-          onDeleteCategory={deleteCategory}
-          onSaveItem={saveMenuItem}
-          onDeleteItem={deleteMenuItem}
-          onResetMenu={() => setMenuData(createDefaultMenuData())}
-        />
 
         <ContactSection />
       </main>

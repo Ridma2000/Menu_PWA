@@ -1,4 +1,4 @@
-import { Settings, ShoppingBag } from 'lucide-react'
+import { ShoppingBag } from 'lucide-react'
 import { restaurantDetails } from '../data/restaurant'
 
 interface HeaderProps {
@@ -28,19 +28,9 @@ export function Header({ cartCount }: HeaderProps) {
           <a className="transition hover:text-red-700" href="#contact">
             Contact
           </a>
-          <a className="transition hover:text-red-700" href="#owner">
-            Owner
-          </a>
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <a
-            href="#owner"
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-stone-200 bg-white text-stone-700 shadow-sm transition hover:bg-stone-100 sm:h-10 sm:w-10"
-            aria-label="Open owner menu editor"
-          >
-            <Settings className="h-4 w-4" aria-hidden="true" />
-          </a>
           <a
             href="#order"
             className="inline-flex h-9 shrink-0 items-center gap-1 rounded-lg bg-stone-950 px-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-red-800 sm:h-10 sm:gap-2 sm:px-3"
