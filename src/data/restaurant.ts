@@ -1,7 +1,7 @@
 import type { RestaurantDetails } from '../types/menu'
 
 export const restaurantDetails: RestaurantDetails = {
-  name: '[Your Restaurant Name]',
+  name: 'Urban Hearth Bistro',
   phone: '[Your Phone Number]',
   whatsapp: '[Your WhatsApp Number with country code]',
   address: '[Your Address]',
