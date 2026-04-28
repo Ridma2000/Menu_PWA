@@ -18,7 +18,7 @@ export function Header({ cartCount }: HeaderProps) {
           </span>
         </a>
 
-        <nav className="hidden items-center justify-self-center gap-8 text-sm font-semibold text-stone-600 md:flex">
+        <nav className="hidden items-center justify-self-center gap-8 text-sm font-semibold text-stone-600 lg:flex">
           <a className="transition hover:text-red-700" href="#menu">
             Menu
           </a>
@@ -30,7 +30,7 @@ export function Header({ cartCount }: HeaderProps) {
           </a>
         </nav>
 
-        <div className="col-start-2 flex shrink-0 items-center justify-self-end gap-1.5 sm:gap-2 md:col-start-3">
+        <div className="col-start-2 hidden shrink-0 items-center justify-self-end gap-1.5 sm:gap-2 md:col-start-3 lg:flex">
           <a
             href="#order"
             className="inline-flex h-9 shrink-0 items-center gap-1 rounded-lg bg-stone-950 px-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-red-800 sm:h-10 sm:gap-2 sm:px-3"

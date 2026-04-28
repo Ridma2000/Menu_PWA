@@ -5,6 +5,9 @@ import { formatCurrency } from '../utils/currency'
 interface CartPanelProps {
   cart: CartItem[]
   total: number
+  id?: string
+  headingId?: string
+  className?: string
   onIncrease: (itemId: string) => void
   onDecrease: (itemId: string) => void
   onRemove: (itemId: string) => void
@@ -14,6 +17,9 @@ interface CartPanelProps {
 export function CartPanel({
   cart,
   total,
+  id = 'order',
+  headingId = 'cart-heading',
+  className = '',
   onIncrease,
   onDecrease,
   onRemove,
@@ -23,16 +29,16 @@ export function CartPanel({
 
   return (
     <section
-      id="order"
-      className="min-w-0 rounded-lg border border-stone-200 bg-white p-4 shadow-sm"
-      aria-labelledby="cart-heading"
+      id={id}
+      className={`min-w-0 rounded-lg border border-stone-200 bg-white p-4 shadow-sm ${className}`}
+      aria-labelledby={headingId}
     >
       <div className="flex min-w-0 items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="text-xs font-bold tracking-[0.16em] text-red-700 uppercase">
             Selected items
           </p>
-          <h2 id="cart-heading" className="text-xl font-black text-stone-950">
+          <h2 id={headingId} className="text-xl font-black text-stone-950">
             Your Cart
           </h2>
         </div>

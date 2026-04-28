@@ -5,6 +5,7 @@ import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { ItemDetailsModal } from './components/ItemDetailsModal'
 import { MenuCard } from './components/MenuCard'
+import { MobileCartPopup } from './components/MobileCartPopup'
 import { PWAInstallPrompt } from './components/PWAInstallPrompt'
 import { SearchFilter } from './components/SearchFilter'
 import { restaurantDetails } from './data/restaurant'
@@ -138,6 +139,16 @@ function App() {
     )
   }
 
+  const increaseCartItem = (itemId: string) => {
+    const cartItem = cart.find((currentItem) => currentItem.item.id === itemId)
+    updateQuantity(itemId, (cartItem?.quantity ?? 0) + 1)
+  }
+
+  const decreaseCartItem = (itemId: string) => {
+    const cartItem = cart.find((currentItem) => currentItem.item.id === itemId)
+    updateQuantity(itemId, (cartItem?.quantity ?? 0) - 1)
+  }
+
   const handleWhatsAppOrder = () => {
     if (cart.length === 0) {
       return
@@ -214,22 +225,12 @@ function App() {
                 )}
               </div>
 
-              <aside className="min-w-0 lg:sticky lg:top-24">
+              <aside className="hidden min-w-0 lg:sticky lg:top-24 lg:block">
                 <CartPanel
                   cart={cart}
                   total={cartTotal}
-                  onIncrease={(itemId) => {
-                    const cartItem = cart.find(
-                      (currentItem) => currentItem.item.id === itemId,
-                    )
-                    updateQuantity(itemId, (cartItem?.quantity ?? 0) + 1)
-                  }}
-                  onDecrease={(itemId) => {
-                    const cartItem = cart.find(
-                      (currentItem) => currentItem.item.id === itemId,
-                    )
-                    updateQuantity(itemId, (cartItem?.quantity ?? 0) - 1)
-                  }}
+                  onIncrease={increaseCartItem}
+                  onDecrease={decreaseCartItem}
                   onRemove={removeFromCart}
                   onWhatsAppOrder={handleWhatsAppOrder}
                 />
@@ -240,6 +241,16 @@ function App() {
 
         <ContactSection />
       </main>
+
+      <MobileCartPopup
+        cart={cart}
+        cartCount={cartCount}
+        total={cartTotal}
+        onIncrease={increaseCartItem}
+        onDecrease={decreaseCartItem}
+        onRemove={removeFromCart}
+        onWhatsAppOrder={handleWhatsAppOrder}
+      />
 
       {selectedItem && (
         <ItemDetailsModal
