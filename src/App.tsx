@@ -9,6 +9,11 @@ import { PWAInstallPrompt } from './components/PWAInstallPrompt'
 import { SearchFilter } from './components/SearchFilter'
 import { restaurantDetails } from './data/restaurant'
 import type { CartItem, CategoryFilter, MenuData, MenuItem } from './types/menu'
+import {
+  loadLikeCounts,
+  saveLikeCounts,
+  type LikeCounts,
+} from './utils/likesStorage'
 import { loadMenuData } from './utils/menuStorage'
 import { createWhatsAppOrderUrl } from './utils/order'
 
@@ -19,7 +24,14 @@ function App() {
     useState<CategoryFilter>('All')
   const [cart, setCart] = useState<CartItem[]>([])
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
+  const [likeCounts, setLikeCounts] = useState<LikeCounts>(() =>
+    loadLikeCounts(),
+  )
   const { categories, items } = menuData
+
+  useEffect(() => {
+    saveLikeCounts(likeCounts)
+  }, [likeCounts])
 
   useEffect(() => {
     setSelectedCategory((currentCategory) =>
@@ -99,6 +111,13 @@ function App() {
     })
   }
 
+  const likeItem = (itemId: string) => {
+    setLikeCounts((currentLikes) => ({
+      ...currentLikes,
+      [itemId]: (currentLikes[itemId] ?? 0) + 1,
+    }))
+  }
+
   const updateQuantity = (itemId: string, nextQuantity: number) => {
     setCart((currentCart) => {
       if (nextQuantity <= 0) {
@@ -176,6 +195,8 @@ function App() {
                       <MenuCard
                         key={item.id}
                         item={item}
+                        likeCount={likeCounts[item.id] ?? 0}
+                        onLike={likeItem}
                         onAddToCart={addToCart}
                         onViewDetails={setSelectedItem}
                       />

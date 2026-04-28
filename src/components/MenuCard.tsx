@@ -1,15 +1,23 @@
-import { Eye, Plus } from 'lucide-react'
+import { Eye, Heart, Plus } from 'lucide-react'
 import { formatCurrency } from '../utils/currency'
 import type { MenuItem } from '../types/menu'
 import { TagPill } from './TagPill'
 
 interface MenuCardProps {
   item: MenuItem
+  likeCount: number
+  onLike: (itemId: string) => void
   onAddToCart: (item: MenuItem) => void
   onViewDetails: (item: MenuItem) => void
 }
 
-export function MenuCard({ item, onAddToCart, onViewDetails }: MenuCardProps) {
+export function MenuCard({
+  item,
+  likeCount,
+  onLike,
+  onAddToCart,
+  onViewDetails,
+}: MenuCardProps) {
   return (
     <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
       <div className="relative aspect-[4/3] shrink-0 overflow-hidden bg-stone-100">
@@ -41,9 +49,20 @@ export function MenuCard({ item, onAddToCart, onViewDetails }: MenuCardProps) {
               {item.name}
             </h3>
           </div>
-          <p className="shrink-0 text-right text-base font-black text-stone-950">
-            {formatCurrency(item.price)}
-          </p>
+          <div className="flex shrink-0 flex-col items-end gap-2">
+            <p className="text-right text-base font-black text-stone-950">
+              {formatCurrency(item.price)}
+            </p>
+            <button
+              type="button"
+              onClick={() => onLike(item.id)}
+              aria-label={`Like ${item.name}`}
+              className="inline-flex h-8 min-w-14 items-center justify-center gap-1.5 rounded-full border border-red-100 bg-red-50 px-3 text-sm font-black text-red-700 transition hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-700 focus:ring-offset-2"
+            >
+              <Heart className="h-4 w-4 fill-current" aria-hidden="true" />
+              <span>{likeCount}</span>
+            </button>
+          </div>
         </div>
 
         <p className="mt-3 line-clamp-3 text-sm leading-6 text-stone-600">
